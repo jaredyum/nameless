@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { push } from 'react-router-redux';
 
 // Services
