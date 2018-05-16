@@ -20,4 +20,3 @@ firebase.json
 # Build folder
 dist
 
-coverage.sh
