@@ -1,0 +1,26 @@
+import React from 'react';
+import { withStyles } from 'material-ui/styles';
+import { CircularProgress } from 'material-ui/Progress';
+
+const styles = theme => ({
+  progress: {
+    margin: theme.spacing.unit * 2
+  },
+  loadingWrapper: {
+    display: 'flex',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+});
+
+function CircularIndeterminate(props) {
+  const { classes } = props;
+  return (
+    <div className={classes.loadingWrapper}>
+      <CircularProgress className={classes.progress} size={50} />
+    </div>
+  );
+}
+
+export default withStyles(styles)(CircularIndeterminate);
