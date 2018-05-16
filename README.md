@@ -7,6 +7,9 @@ See the [bare](https://help.github.com/articles/duplicating-a-repository/) optio
 
 ## Dependencies
 
+This project does NOT come with `firebase.json` or `env.js`. Please see another
+developer for these files, as we do not keep them in source control.
+
 You can install the apps dependencies with the following command:
 
 ```
