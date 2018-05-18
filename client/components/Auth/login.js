@@ -97,6 +97,7 @@ class Login extends Component {
                 placeholder="user@email.com"
                 className={classes.inputLeft}
                 type="email"
+                id="email"
                 inputProps={{ 'aria-label': 'Email' }}
                 onChange={e => this.updateValue(e, 'email')}
                 value={email}
@@ -104,6 +105,7 @@ class Login extends Component {
               <Input
                 placeholder="password"
                 type="password"
+                id="password"
                 inputProps={{ 'aria-label': 'Password' }}
                 onChange={e => this.updateValue(e, 'password')}
                 value={password}
@@ -114,6 +116,7 @@ class Login extends Component {
                   color="primary"
                   disabled={!isValid}
                   type="submit"
+                  id="login-btn"
                 >
               Login
                 </Button>

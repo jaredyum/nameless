@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
-// React 15.x requires an Enzyme adapter.
+// React 16.x requires an Enzyme adapter.
 // See: http://airbnb.io/enzyme/docs/installation/index.html#installation
 // And: http://facebook.github.io/jest/docs/en/configuration.html#setuptestframeworkscriptfile-string
 import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-15';
+import Adapter from 'enzyme-adapter-react-16';
 
 if (!global.TEST_CFG) {
   global.TEST_CFG = true;

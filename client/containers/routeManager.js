@@ -42,7 +42,6 @@ const getRouteComponents = FILTER => getRoutesArray(FILTER)
 
 class RouteManager extends React.Component {
   componentDidMount() {
-    // TODO: Should we put this somewhere else???
     this.props.onAuthStateChange();
   }
 
@@ -104,5 +103,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(cleanMapStateToProps([
-  'authed'
+  'authed',
+  'currentNotification',
+  'notifications'
 ]), mapDispatchToProps)(RouteManager);
