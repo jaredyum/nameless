@@ -3,6 +3,7 @@ import Snackbar from 'material-ui/Snackbar';
 
 const Notification = props => (
   <Snackbar
+    id="notifications-snackbar"
     className={props.className}
     open={!!props.open}
     message={props.message || ''}
