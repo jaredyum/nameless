@@ -22,7 +22,6 @@ import {
 } from 'copy/Components/auth';
 
 import {
-  ROUTEPATH_FORBIDDEN,
   ROUTEPATH_VERIFICATION,
   ROUTEPATH_DEFAULT_PAGE
 } from 'copy/Global/routes';
@@ -141,14 +140,16 @@ export const login = (email, password, redirectUrl = ROUTEPATH_DEFAULT_PAGE) =>
       .then(() => dispatch(push(redirectUrl)))
       .catch((e) => {
         console.error(AUTH_LOGIN_ERROR, e);
-        if (e.code === AUTH_USER_NOT_FOUND) {
-          dispatch(push(ROUTEPATH_FORBIDDEN));
-          dispatch(toggleNotification(e.message, 'error'));
-        } else if (e.code === AUTH_WRONG_PASSWORD_ERR) {
-          dispatch(toggleNotification(e.message, 'error'));
-        } else {
-          dispatch(toggleNotification(e.message, 'error'));
-          throw e;
+        switch (e.code) {
+          case AUTH_USER_NOT_FOUND:
+            dispatch(toggleNotification(e.message, 'error'));
+            break;
+          case AUTH_WRONG_PASSWORD_ERR:
+            dispatch(toggleNotification(e.message, 'error'));
+            break;
+          default:
+            dispatch(toggleNotification(e.message, 'error'));
+            throw e;
         }
       });
   };
