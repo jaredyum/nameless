@@ -8,7 +8,7 @@
     "start": "webpack-dev-server --colors",
     "build": "webpack -p",
     "production": "webpack -p",
-    "test": "yarn run test-eslint; yarn run test-jest:update --verbose --maxWorkers=2; yarn run e2e",
+    "test": "yarn run test-eslint; yarn run test-jest:update --verbose --maxWorkers=2;",
     "test-eslint": "eslint client",
     "test-eslint:fix": "eslint --fix client",
     "test-scsslint": "./node_modules/.bin/sass-lint 'client/styles/**/*.scss' -v -q",
