@@ -9,7 +9,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import { onAuthStateChange } from 'actions/Auth';
 
 // MUI Components
-import CssBaseline from 'material-ui/CssBaseline';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 // Components
 import Main from 'components/Common/main';

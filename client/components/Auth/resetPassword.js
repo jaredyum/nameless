@@ -1,7 +1,7 @@
 import React from 'react';
 
 // MUI Components
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 
 // Components
 import ContentSection from 'components/Layout/contentSection';
