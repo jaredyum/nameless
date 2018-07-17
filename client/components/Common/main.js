@@ -1,7 +1,7 @@
 import React from 'react';
 
 // MUI
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 // Components
 import TopNav from 'components/Common/topNav';
