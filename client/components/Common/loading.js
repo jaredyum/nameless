@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { CircularProgress } from '@material-ui/core/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = theme => ({
   progress: {
@@ -14,7 +14,7 @@ const styles = theme => ({
   }
 });
 
-function CircularIndeterminate(props) {
+function LoadingIndicator(props) {
   const { classes } = props;
   return (
     <div className={classes.loadingWrapper}>
@@ -23,4 +23,4 @@ function CircularIndeterminate(props) {
   );
 }
 
-export default withStyles(styles)(CircularIndeterminate);
+export default withStyles(styles)(LoadingIndicator);
