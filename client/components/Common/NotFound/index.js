@@ -6,15 +6,16 @@ import Typography from '@material-ui/core/Typography';
 // Components
 import ContentSection from 'components/Layout/ContentSection';
 
-const Home = () => (
+const NotFound = () => (
   <ContentSection>
     <Typography variant="display3" gutterBottom align="center">
-      Welcome to the Home Page!
+      Page Not Found
     </Typography>
     <Typography variant="body1" gutterBottom align="center">
-      Hold tight, we&apos;ve got some good stuff on the way ;-)
+      The content you were looking for could not be found. Please check the URL
+      and try again.
     </Typography>
   </ContentSection>
 );
 
-export default Home;
+export default NotFound;

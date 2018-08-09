@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Forbidden /> Component when rendering should render a component matching the snapshot 1`] = `
+<WithStyles(ContentSection)>
+  <WithStyles(Typography)
+    gutterBottom={true}
+    variant="display3"
+  >
+    Forbidden
+  </WithStyles(Typography)>
+  <WithStyles(Typography)
+    gutterBottom={true}
+    variant="body1"
+  >
+    This page is restricted.
+  </WithStyles(Typography)>
+  <WithStyles(Typography)
+    gutterBottom={true}
+    variant="body1"
+  >
+    Click
+     
+    <Link
+      replace={false}
+      to="/login"
+    >
+      here
+    </Link>
+     
+    to login.
+  </WithStyles(Typography)>
+</WithStyles(ContentSection)>
+`;

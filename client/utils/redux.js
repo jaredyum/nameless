@@ -17,21 +17,22 @@ const defaultPropDef = {
   enumerable: true
 };
 
-const valueOf = item => item
-  // @TODO: DO NOT DELETE THIS COMMENT
-  // Needs to be refactored in the future to avoid causing
-  // the entire SPA to refresh, but prevent mutation of deep
-  // redux state objects outside of reducers.
-  // if (!item) return item;
-  // if (Array.isArray(item)) return item.map(v => valueOf(v));
-  // if (typeof item === 'object' && item !== null) {
-  //   return Object.keys(item).reduce((ret, key) => ({
-  //     ...ret,
-  //     [key]: valueOf(item[key])
-  //   }), {});
-  // }
-  // return item;
-;
+/**
+ * @TODO: DO NOT DELETE THIS COMMENT
+ * Needs to be refactored in the future to avoid causing
+ * the entire SPA to refresh, but prevent mutation of deep
+ * redux state objects outside of reducers.
+ * if (!item) return item;
+ * if (Array.isArray(item)) return item.map(v => valueOf(v));
+ * if (typeof item === 'object' && item !== null) {
+ *   return Object.keys(item).reduce((ret, key) => ({
+ *     ...ret,
+ *     [key]: valueOf(item[key])
+ *   }), {});
+ * }
+ * return item;
+ */
+const valueOf = item => item;
 
 // Grabs all appropriate initialStates to use in a container
 const getters = Object

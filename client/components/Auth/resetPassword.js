@@ -4,7 +4,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
 // Components
-import ContentSection from 'components/Layout/contentSection';
+import ContentSection from 'components/Layout/ContentSection';
 
 const ResetPassword = () => (
   <ContentSection>

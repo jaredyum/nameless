@@ -84,7 +84,9 @@ class Login extends Component {
               variant="headline"
               component="h3"
               className={classes.copy}
-            >Login</Typography>
+            >
+              Login
+            </Typography>
             <Typography component="p" className={classes.copy}>
             Fill out the form below to login.
             </Typography>

@@ -76,15 +76,15 @@ export const formatIdAsDisplayName = id =>
     /((?:^|\.)[a-z]|[A-Z])/g, char => ` ${char[char.length - 1].toUpperCase()}`
   ).trim().replace('ies', 'y');
 
-  /**
-   * Returns JSX that is determined by the length of the array passed in (children).
-   * NOTE: This is for the `ButtonGroup` component to determine whether to render an extra
-   * div to keep the `Clone` and `Archive` buttons together.
-   * If there's only two elements, it just renders them b/c the parent container is using
-   * flexbox to spread them apart.
-   * @param {!Array} children The array you want to iterate with.
-   * @return {!Array<JSX>} The array of JSX elements in a layout determined by array
-   */
+/**
+ * Returns JSX that is determined by the length of the array passed in (children).
+ * NOTE: This is for the `ButtonGroup` component to determine whether to render an extra
+ * div to keep the `Clone` and `Archive` buttons together.
+ * If there's only two elements, it just renders them b/c the parent container is using
+ * flexbox to spread them apart.
+ * @param {!Array} children The array you want to iterate with.
+ * @return {!Array<JSX>} The array of JSX elements in a layout determined by array
+ */
 export const determineLayout = (children = []) => {
   if (children.length > 2) {
     return ([

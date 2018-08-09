@@ -9,14 +9,13 @@ import {
  * @param {boolean} error Whether there is an error or not.
  * @param {string} errMsg Custom message to show user.
  */
-export const displayError = (error, errMsg) => dispatch =>
-  dispatch({
-    type: NOTIFICATION_DISPLAY_ERROR,
-    payload: {
-      error,
-      errMsg
-    }
-  });
+export const displayError = (error, errMsg) => dispatch => dispatch({
+  type: NOTIFICATION_DISPLAY_ERROR,
+  payload: {
+    error,
+    errMsg
+  }
+});
 
 /**
  * Toggles a notification to the user.

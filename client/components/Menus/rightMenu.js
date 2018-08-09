@@ -47,7 +47,9 @@ class RightMenu extends React.Component {
     const { anchorEl } = this.state;
 
     return anchorEl ? [
-      <MenuItem key="logout" onClick={this.logout}>Logout</MenuItem>
+      <MenuItem key="logout" onClick={this.logout}>
+        Logout
+      </MenuItem>
     ] : [];
   }
 
@@ -69,7 +71,9 @@ class RightMenu extends React.Component {
         component={Link}
         to={path}
         onClick={this.closeMenu}
-      >{label}</MenuItem>
+      >
+        {label}
+      </MenuItem>
     )) : [];
   }
 

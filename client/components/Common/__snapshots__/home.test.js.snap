@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> Component when rendering should render a component matching the snapshot 1`] = `
+<WithStyles(ContentSection)>
+  <WithStyles(Typography)
+    align="center"
+    gutterBottom={true}
+    variant="display3"
+  >
+    Welcome to the Home Page!
+  </WithStyles(Typography)>
+  <WithStyles(Typography)
+    align="center"
+    gutterBottom={true}
+    variant="body1"
+  >
+    Hold tight, we've got some good stuff on the way ;-)
+  </WithStyles(Typography)>
+</WithStyles(ContentSection)>
+`;
