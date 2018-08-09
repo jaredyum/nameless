@@ -24,6 +24,7 @@
     "comma-dangle": ["error", "never"],
     "implicit-arrow-linebreak": 0,
     "semi": ["error", "always"],
+    "react/jsx-one-expression-per-line": 0,
     "react/jsx-filename-extension": 0,
     "react/jsx-no-target-blank": 0,
     "react/destructuring-assignment": 0,

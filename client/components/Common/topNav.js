@@ -35,13 +35,7 @@ class TopNav extends Component {
    */
   renderUserName() {
     const { authed, userFirstName, userLastName } = this.props;
-    return authed && (
-      <span>
-        {userFirstName}
-        {' '}
-        {userLastName}
-      </span>
-    );
+    return authed && <span>{userFirstName} {userLastName}</span>;
   }
 
   render() {

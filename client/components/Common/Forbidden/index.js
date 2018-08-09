@@ -21,13 +21,7 @@ const Forbidden = () => (
       This page is restricted.
     </Typography>
     <Typography variant="body1" gutterBottom>
-      Click
-      {' '}
-      <Link to={ROUTEPATH_LOGIN}>
-here
-      </Link>
-      {' '}
-to login.
+      Click <Link to={ROUTEPATH_LOGIN}>here</Link> to login.
     </Typography>
   </ContentSection>
 );
