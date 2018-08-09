@@ -8,7 +8,9 @@ import { withStyles } from '@material-ui/core/styles';
 import { styles as paperStyles } from 'components/Styles/paper';
 
 const ContentSection = ({ children, classes }) => (
-  <Paper className={classes.paperDefault}>{children}</Paper>
+  <Paper className={classes.paperDefault}>
+    {children}
+  </Paper>
 );
 
 export default withStyles(paperStyles)(ContentSection);

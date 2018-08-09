@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NotFound /> Component when rendering should render a component matching the snapshot 1`] = `
+<WithStyles(ContentSection)>
+  <WithStyles(Typography)
+    align="center"
+    gutterBottom={true}
+    variant="display3"
+  >
+    Page Not Found
+  </WithStyles(Typography)>
+  <WithStyles(Typography)
+    align="center"
+    gutterBottom={true}
+    variant="body1"
+  >
+    The content you were looking for could not be found. Please check the URL and try again.
+  </WithStyles(Typography)>
+</WithStyles(ContentSection)>
+`;

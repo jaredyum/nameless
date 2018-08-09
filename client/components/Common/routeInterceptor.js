@@ -22,7 +22,8 @@ import {
 } from 'copy/Global/routes';
 
 // Components
-import { Forbidden, NotFound } from 'components';
+import Forbidden from 'components/Common/Forbidden';
+import NotFound from 'components/Common/NotFound';
 
 // Utils
 import { getRouteFromPathName } from 'utils/routes';
@@ -35,8 +36,7 @@ class RouteInterceptor extends React.Component {
 
     this.state = {
       forbidden: false,
-      notFound: false,
-      shouldRedirect: false
+      notFound: false
     };
   }
 
