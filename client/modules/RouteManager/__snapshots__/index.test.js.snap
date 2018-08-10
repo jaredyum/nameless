@@ -4,7 +4,7 @@ exports[`<RouteManager /> component when rendering should render a component mat
 <HashRouter>
   <div>
     <WithStyles(CssBaseline) />
-    <Connect(Navigation) />
+    <Connect(WithStyles(TopNav)) />
     <WithStyles(Main)>
       <Switch>
         <RouteMiddleware
@@ -20,13 +20,6 @@ exports[`<RouteManager /> component when rendering should render a component mat
           key="/reset-password"
           path="/reset-password"
           unauthOnly={true}
-        />
-        <RouteMiddleware
-          authOnly={true}
-          component={[Function]}
-          exact={true}
-          key="/store/:storeNumber?"
-          path="/store/:storeNumber?"
         />
         <RouteMiddleware
           component={[Function]}

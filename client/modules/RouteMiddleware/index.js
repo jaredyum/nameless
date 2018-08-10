@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 // Components
-import Forbidden from 'components/Common/Forbidden';
+import Forbidden from 'modules/Forbidden';
 
 // Constants
 import {

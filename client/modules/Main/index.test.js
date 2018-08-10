@@ -7,7 +7,7 @@ import {
 } from 'utils/tests';
 
 // Components
-import Notification from 'components/Common/Notification';
+import Notification from 'components/Common/notification';
 import { MainJest } from './index';
 
 const mockNotificationID = 'foo';

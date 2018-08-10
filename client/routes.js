@@ -2,7 +2,7 @@
 import Home from 'components/Common/home';
 import Login from 'components/Auth/Login';
 import ResetPassword from 'components/Auth/resetPassword';
-import NotFound from 'components/Common/NotFound';
+import NotFound from 'modules/NotFound';
 
 /**
  * Flag indicating that this path must be matched the "path" exactly.
@@ -14,7 +14,8 @@ const exact = true;
  * Flag indicating that only authorized users can access this page.
  * @type {boolean}
  */
-const authOnly = true;
+// TODO: Developers - enable this flag when you have authorized routes.
+// const authOnly = true;
 
 /**
  * Flag indicating that only non-logged-in users can access this page.

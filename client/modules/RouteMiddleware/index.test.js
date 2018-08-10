@@ -20,7 +20,7 @@ import {
 
 // Components
 import Home from 'components/Common/home';
-import Forbidden from 'components/Common/Forbidden';
+import Forbidden from 'modules/Forbidden';
 import Login from 'components/Auth/Login';
 import ResetPassword from 'components/Auth/resetPassword';
 import RouteMiddleware, { renderRoute } from './index';

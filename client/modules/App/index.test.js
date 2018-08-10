@@ -4,9 +4,11 @@ import {
   testCommonComponentAttrs
 } from 'utils/tests';
 
-// Components
+// MUI Components
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import RouteManager from 'containers/RouteManager';
+
+// Components
+import RouteManager from 'modules/RouteManager';
 import { App } from './index';
 
 describe('<App /> Component', () => {
