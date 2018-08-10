@@ -1,92 +1,61 @@
-import { PAGE_AUTH_REQS } from 'copy/Global/routes';
-
-export const PROP_CONTENT_ROUTE = '[[ContentRoute]]';
-
-const exact = true;
-
-const {
-  ANY,
-  AUTHORIZED,
-  UNAUTHORIZED
-} = PAGE_AUTH_REQS;
+// Route components
+import Home from 'components/Common/home';
+import Login from 'components/Auth/Login';
+import ResetPassword from 'components/Auth/resetPassword';
+import NotFound from 'components/Common/NotFound';
 
 /**
- * Do not export routes - if you need to get a list of routes (as an array or
- * object), use one of the convenience methods down below.
+ * Flag indicating that this path must be matched the "path" exactly.
+ * @type {boolean}
  */
-const routesConfig = {
-  // Auth Routes => /:context
-  authLogin: {
-    label: 'Login',
+const exact = true;
+
+/**
+ * Flag indicating that only authorized users can access this page.
+ * @type {boolean}
+ */
+const authOnly = true;
+
+/**
+ * Flag indicating that only non-logged-in users can access this page.
+ * @type {boolean}
+ */
+const unauthOnly = true;
+
+/**
+ * The routes configuration.
+ * NOTE: RouteInterceptor MUST come last; it is our application's 404 handler.
+ * @const {!Array.<!Object>}
+ */
+const ROUTES_CONFIG = [
+  /* Routes that only non-logged-in users should access. (unauthOnly=true) */
+  {
     path: '/login',
-    title: 'Login',
-    authReq: UNAUTHORIZED,
-    component: 'Login',
-    exact
+    component: Login,
+    exact,
+    unauthOnly
   },
-  authResetPassword: {
-    label: 'Reset',
+  {
     path: '/reset-password',
-    title: 'Reset Password',
-    authReq: UNAUTHORIZED,
-    component: 'ResetPassword',
-    exact
-  },
-  authRedirector: {
-    label: 'Redirect',
-    path: '/redirect',
-    title: 'Firebase Redirect',
-    authReq: UNAUTHORIZED,
-    component: 'FirebaseRedirector',
-    exact
-  },
-  authChangePassword: {
-    label: 'Change',
-    path: '/change-password/:oobCode/',
-    title: 'Change Password',
-    authReq: UNAUTHORIZED,
-    component: 'ChangePassword',
-    exact
-  },
-  authVerification: {
-    label: 'Verify',
-    path: '/verification',
-    title: 'Verify your email',
-    authReq: UNAUTHORIZED,
-    component: 'Login',
-    exact
-  },
-  authRestricted: {
-    label: 'Restricted Access',
-    path: '/restricted-access',
-    title: 'Restricted Access',
-    authReq: UNAUTHORIZED,
-    component: 'RestrictedAccess',
-    exact
+    component: ResetPassword,
+    exact,
+    unauthOnly
   },
 
-  home: {
-    label: 'Home',
+  /* (Protected) Routes that only logged-in users should access. (authOnly=true) */
+  /* Add PROTECTED routes here with the authOnly flag. */
+
+  /* Routes that are always available. */
+  {
     path: '/(home)?',
-    title: 'Home',
-    authReq: AUTHORIZED,
-    component: 'Home'
+    component: Home,
+    exact
   },
 
-  // ********************************************************
-  // ********************************************************
-  // ********************************************************
-  // ANY ROUTES BELOW RouteInterceptor WILL NOT BE CONSIDERED
-  // ********************************************************
-  // ********************************************************
-  // ********************************************************
-
-  routeInterceptor: {
-    label: null,
-    title: null,
-    authReq: ANY,
-    component: 'RouteInterceptor'
+  /* Non-matched routes render a 404 not found (path=null) */
+  {
+    component: NotFound
   }
-};
+];
 
-export default routesConfig;
+export default ROUTES_CONFIG;
