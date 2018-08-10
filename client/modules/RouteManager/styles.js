@@ -1,5 +1,5 @@
 export default {
-  root: {
+  routeManager: {
     flex: 1,
     flexDirection: 'column',
     display: 'flex'

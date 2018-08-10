@@ -19,7 +19,6 @@ import RouteMiddleware from 'modules/RouteMiddleware';
 import Main from 'modules/Main';
 import Loading from 'modules/Loading';
 import TopNav from 'components/Common/topNav';
-// import ConnectedNav from 'components/ConnectedNav';
 
 // Utils
 import { cleanMapStateToProps } from 'utils/redux';
@@ -39,15 +38,18 @@ class RouteManager extends React.Component {
     const { authed, classes } = this.props;
 
     if (authed === null) {
-      return <Loading />;
+      return (
+        <div className={classes.routeManager}>
+          <Loading />;
+        </div>
+      );
     }
 
     return (
       <HashRouter>
-        <div className={classes.root}>
+        <div className={classes.routeManager}>
           <CssBaseline />
           <TopNav />
-          {/* <ConnectedNav /> */}
           <Main
             notifications={this.props.notifications}
             currentNotification={this.props.currentNotification}
