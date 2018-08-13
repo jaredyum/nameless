@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Main /> component when rendering should render a component matching the snapshot 1`] = `
+<main>
+  <div />
+  <Notification
+    className="notification success"
+    open={true}
+  />
+  <p
+    key="One"
+  >
+    One
+  </p>
+  <p
+    key="Two"
+  >
+    Two
+  </p>
+</main>
+`;

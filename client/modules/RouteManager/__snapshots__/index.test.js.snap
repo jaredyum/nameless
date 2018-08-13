@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RouteManager /> component when rendering should render a component matching the snapshot 1`] = `
+<HashRouter>
+  <div>
+    <WithStyles(CssBaseline) />
+    <Connect(WithStyles(TopNav)) />
+    <WithStyles(Main)>
+      <Switch>
+        <RouteMiddleware
+          component={[Function]}
+          exact={true}
+          key="/login"
+          path="/login"
+          unauthOnly={true}
+        />
+        <RouteMiddleware
+          component={[Function]}
+          exact={true}
+          key="/reset-password"
+          path="/reset-password"
+          unauthOnly={true}
+        />
+        <RouteMiddleware
+          component={[Function]}
+          exact={true}
+          key="/(home)?"
+          path="/(home)?"
+        />
+        <RouteMiddleware
+          component={[Function]}
+          key="404"
+        />
+      </Switch>
+    </WithStyles(Main)>
+  </div>
+</HashRouter>
+`;

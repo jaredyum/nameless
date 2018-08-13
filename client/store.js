@@ -3,6 +3,7 @@ import { routerReducer, routerMiddleware } from 'react-router-redux';
 import {
   compose, createStore, combineReducers, applyMiddleware
 } from 'redux';
+
 import history from 'history';
 
 // App reducers.

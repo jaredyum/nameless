@@ -18,16 +18,14 @@ exports[`<Forbidden /> Component when rendering should render a component matchi
     gutterBottom={true}
     variant="body1"
   >
-    Click
-     
+    Click 
     <Link
       replace={false}
       to="/login"
     >
       here
     </Link>
-     
-    to login.
+     to login.
   </WithStyles(Typography)>
 </WithStyles(ContentSection)>
 `;
