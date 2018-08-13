@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SideMenu /> Component when rendering should render a component matching the snapshot 1`] = `
+<div>
+  <Hidden
+    implementation="js"
+    lgDown={false}
+    lgUp={false}
+    mdDown={false}
+    mdUp={true}
+    smDown={false}
+    smUp={false}
+    xlDown={false}
+    xlUp={false}
+    xsDown={false}
+    xsUp={false}
+  >
+    <WithStyles(Drawer)
+      ModalProps={
+        Object {
+          "keepMounted": true,
+        }
+      }
+      classes={
+        Object {
+          "paper": undefined,
+        }
+      }
+      variant="temporary"
+    >
+      <div>
+        <WithStyles(Toolbar)>
+          <WithStyles(Typography)
+            color="inherit"
+            variant="title"
+          />
+        </WithStyles(Toolbar)>
+        <WithStyles(Divider) />
+        <SideMenuGroups />
+      </div>
+    </WithStyles(Drawer)>
+  </Hidden>
+  <Hidden
+    implementation="css"
+    lgDown={false}
+    lgUp={false}
+    mdDown={false}
+    mdUp={false}
+    smDown={true}
+    smUp={false}
+    xlDown={false}
+    xlUp={false}
+    xsDown={false}
+    xsUp={false}
+  >
+    <WithStyles(Drawer)
+      classes={
+        Object {
+          "paper": undefined,
+        }
+      }
+      open={true}
+      variant="permanent"
+    >
+      <div>
+        <WithStyles(Toolbar)>
+          <WithStyles(Typography)
+            color="inherit"
+            variant="title"
+          />
+        </WithStyles(Toolbar)>
+        <WithStyles(Divider) />
+        <SideMenuGroups />
+      </div>
+    </WithStyles(Drawer)>
+  </Hidden>
+</div>
+`;

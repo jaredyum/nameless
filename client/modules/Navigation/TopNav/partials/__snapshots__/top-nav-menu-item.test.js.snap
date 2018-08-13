@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MyComponent /> Component when rendering should render a component matching the snapshot 1`] = `
+<WithStyles(MenuItem)>
+  <NavLink
+    activeClassName="active"
+    aria-current="page"
+    replace={true}
+    to="/foo"
+  />
+</WithStyles(MenuItem)>
+`;

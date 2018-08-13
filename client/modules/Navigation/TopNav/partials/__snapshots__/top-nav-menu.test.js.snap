@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TopNavMenu /> Component when rendering should render a component matching the snapshot 1`] = `
+<div>
+  <WithStyles(IconButton)
+    aria-haspopup="true"
+    aria-owns={null}
+    color="inherit"
+    onClick={[Function]}
+  >
+    <pure(AccountCircle) />
+  </WithStyles(IconButton)>
+  <WithStyles(Menu)
+    anchorEl={null}
+    id="top-nav-menu"
+    onClose={[Function]}
+    open={false}
+  >
+    <WithStyles(NavMenuItem)
+      closeHandler={[Function]}
+      key="wibble"
+      label="wibble"
+    />
+    <WithStyles(NavMenuItem)
+      closeHandler={[Function]}
+      key="wobble"
+      label="wobble"
+    />
+  </WithStyles(Menu)>
+</div>
+`;
