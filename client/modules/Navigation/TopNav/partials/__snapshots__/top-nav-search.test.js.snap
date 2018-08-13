@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TopNavSearch /> Component when rendering should render a component matching the snapshot 1`] = `
+<form
+  autoComplete="off"
+  onSubmit={[Function]}
+>
+  <input
+    id="name"
+    label="Name"
+    onChange={[Function]}
+    placeholder="Search"
+    value=""
+  />
+</form>
+`;

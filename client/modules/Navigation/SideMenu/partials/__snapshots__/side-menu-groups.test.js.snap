@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SideMenuGroups /> Component when rendering should render a component matching the snapshot 1`] = `
+<div>
+  <div
+    key="foo"
+  >
+    <MenuList>
+      <WithStyles(ListSubheader)>
+        foo
+      </WithStyles(ListSubheader)>
+      <WithStyles(SideMenuItems)
+        collection={
+          Array [
+            1,
+            2,
+            3,
+          ]
+        }
+      />
+    </MenuList>
+    <WithStyles(Divider) />
+  </div>
+  <div
+    key="bar"
+  >
+    <MenuList>
+      <WithStyles(ListSubheader)>
+        bar
+      </WithStyles(ListSubheader)>
+      <WithStyles(SideMenuItems)
+        collection={
+          Array [
+            4,
+            5,
+            6,
+          ]
+        }
+      />
+    </MenuList>
+  </div>
+</div>
+`;

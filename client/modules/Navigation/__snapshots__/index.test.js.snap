@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Navigation /> Component when rendering should render a component matching the snapshot 1`] = `
+<div>
+  <WithStyles(TopNav)
+    appName="App Name Unavailable"
+    toggleHandler={[Function]}
+  />
+  <WithStyles(SideMenu)
+    sidebarOpen={false}
+    toggleHandler={[Function]}
+  />
+</div>
+`;

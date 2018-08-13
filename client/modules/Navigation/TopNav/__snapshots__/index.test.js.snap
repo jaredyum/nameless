@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TopNav /> Component when rendering should render a component matching the snapshot 1`] = `
+<div>
+  <WithStyles(AppBar)
+    position="fixed"
+  >
+    <WithStyles(Toolbar)>
+      <WithStyles(IconButton)
+        aria-label="open drawer"
+        color="inherit"
+      >
+        <pure(Menu) />
+      </WithStyles(IconButton)>
+      <WithStyles(Typography)
+        color="inherit"
+        variant="title"
+      />
+      <TopNavSearch
+        classes={[Function]}
+        searchHandler={[MockFunction]}
+      />
+      <TopNavMenu />
+    </WithStyles(Toolbar)>
+  </WithStyles(AppBar)>
+</div>
+`;

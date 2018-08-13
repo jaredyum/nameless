@@ -18,7 +18,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import RouteMiddleware from 'modules/RouteMiddleware';
 import Main from 'modules/Main';
 import Loading from 'modules/Loading';
-import TopNav from 'components/Common/topNav';
+import ConnectedNav from 'components/ConnectedNav';
 
 // Utils
 import { cleanMapStateToProps } from 'utils/redux';
@@ -49,7 +49,7 @@ class RouteManager extends React.Component {
       <HashRouter>
         <div className={classes.routeManager}>
           <CssBaseline />
-          <TopNav />
+          <ConnectedNav />
           <Main
             notifications={this.props.notifications}
             currentNotification={this.props.currentNotification}
