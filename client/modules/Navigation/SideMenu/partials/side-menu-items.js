@@ -1,10 +1,7 @@
 import React from 'react';
 
 // React Router
-import {
-  withRouter,
-  NavLink
-} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 // MUI Components
 import { withStyles } from '@material-ui/core/styles';
@@ -30,14 +27,14 @@ const SideMenuItems = ({
       };
 
       return (
-        <ListItem onClick={closeAndExec} key={label}>
+        <ListItem title={label} onClick={closeAndExec} key={label}>
           <span className={classes.link}>{ label }</span>
         </ListItem>
       );
     }
 
     return (
-      <ListItem key={label}>
+      <ListItem title={label} key={label}>
         <NavLink
           to={path}
           className={classes.link}
@@ -53,4 +50,4 @@ const SideMenuItems = ({
 
 export const SideMenuItemsJest = SideMenuItems;
 
-export default withRouter(withStyles(styles)(SideMenuItems));
+export default withStyles(styles)(SideMenuItems);
