@@ -49,8 +49,7 @@ const ROUTES_CONFIG = [
   /* Routes that are always available. */
   {
     path: '/(home)?',
-    component: Home,
-    exact
+    component: Home
   },
 
   /* Non-matched routes render a 404 not found (path=null) */

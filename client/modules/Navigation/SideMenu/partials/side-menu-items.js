@@ -1,7 +1,10 @@
 import React from 'react';
 
 // React Router
-import { NavLink } from 'react-router-dom';
+import {
+  withRouter,
+  NavLink
+} from 'react-router-dom';
 
 // MUI Components
 import { withStyles } from '@material-ui/core/styles';
@@ -10,7 +13,9 @@ import ListItem from '@material-ui/core/ListItem';
 // Local styles
 import styles from '../../styles';
 
-const SideMenuItems = ({ toggleHandler, classes, collection }) =>
+const SideMenuItems = ({
+  toggleHandler, classes, collection
+}) =>
   collection.map(({
     label,
     path,
@@ -38,11 +43,14 @@ const SideMenuItems = ({ toggleHandler, classes, collection }) =>
           className={classes.link}
           onClick={toggleHandler}
           replace
-        >{ label }</NavLink>
+          activeClassName={classes.active}
+        >
+          { label }
+        </NavLink>
       </ListItem>
     );
   });
 
 export const SideMenuItemsJest = SideMenuItems;
 
-export default withStyles(styles)(SideMenuItems);
+export default withRouter(withStyles(styles)(SideMenuItems));

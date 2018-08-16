@@ -36,33 +36,32 @@ class RouteManager extends React.Component {
 
   render() {
     const { authed, classes } = this.props;
-
-    if (authed === null) {
-      return (
-        <div className={classes.routeManager}>
-          <Loading />;
-        </div>
-      );
-    }
+    const isLoading = authed === null;
 
     return (
       <HashRouter>
         <div className={classes.routeManager}>
           <CssBaseline />
-          <ConnectedNav />
+          { !isLoading && <ConnectedNav /> }
           <Main
             notifications={this.props.notifications}
             currentNotification={this.props.currentNotification}
           >
-            <Switch>
-              { ROUTES_CONFIG.map(routeProps => (
-                <RouteMiddleware
-                  key={routeProps.path || '404'}
-                  authed={authed}
-                  {...routeProps}
-                />
-              ))}
-            </Switch>
+            {
+              isLoading
+                ? <Loading />
+                : (
+                  <Switch>
+                    { ROUTES_CONFIG.map(routeProps => (
+                      <RouteMiddleware
+                        key={routeProps.path || '404'}
+                        authed={authed}
+                        {...routeProps}
+                      />
+                    ))}
+                  </Switch>
+                )
+            }
           </Main>
         </div>
       </HashRouter>

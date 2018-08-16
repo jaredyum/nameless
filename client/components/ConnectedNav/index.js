@@ -1,61 +1,74 @@
 import { connect } from 'react-redux';
 
+import { withRouter } from 'react-router-dom';
+
 import { APP_NAME } from 'copy/Global/common';
 
 // Actions
 import { logout as logoutAction } from 'actions/Auth';
 
+// Components
 // TODO: In a future version, this component will be COMPLETELY abstracted out.
 import Navigation from 'modules/Navigation';
 
-export const getTopNavMenuConfig = ({ logout }) => [{
-  label: 'Home',
-  path: '/'
-}, {
-  label: 'Logout',
-  clickHandler: logout
-}];
+// Config
+import {
+  getSideMenuConfig,
+  getTopNavMenuConfig
+} from './config';
 
-/**
- * Gets the sidemenu configuration.
- *
- * The config takes a dictionary of actions (provided via mapDispatchToProps),
- * and returns a dictionary of menu groups.
- *
- * @param {!Object.<string, !Function>} actions Dictionary of actions to use
- *   in the configuration.
- * @return {!Object.<string, !Array>} The configuration dictionary.
- */
-export const getSideMenuConfig = ({ logout }) => [
-  {
-    navTitle: 'Navigation',
-    navItems: [{
-      label: 'Home',
-      path: '/'
-    }, {
-      label: 'Logout',
-      clickHandler: logout
-    }]
-  }
-];
-
-const mapStateToProps = (state, props) => ({
-  appName: APP_NAME,
-  searchPlaceholder: 'Find a Store',
-  ...props
-});
-
-const mapDispatchToProps = (dispatch) => {
-  const logout = (...args) => dispatch(logoutAction(...args));
+const mapStateToProps = (state, props) => {
+  const { authReducer } = state;
+  const { authed } = authReducer;
 
   return ({
-    sideMenuConfig: getSideMenuConfig({ logout }),
-    topNavMenuConfig: getTopNavMenuConfig({ logout }),
-    logout
+    authed,
+    appName: APP_NAME,
+    ...props
   });
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Navigation);
+const mapDispatchToProps = dispatch => ({
+  logout: (...args) => dispatch(logoutAction(...args))
+});
+
+/**
+ * Merges the state and props.
+ *
+ * Typically, we never need to invoke a merge (Redux does this automatically),
+ * but in this case we are conditionally changing and updating menus based on
+ * state, and those menus rely on dispatchable actions that we mapped in
+ * "mapDispatchToProps".
+ *
+ * See:
+ *  https://github.com/reduxjs/react-redux/blob/master/docs/api.md# ↵
+ *    inject-todos-of-a-specific-user-depending-on-props-and-inject ↵
+ *    -propsuserid-into-the-action
+ *
+ * @param {!Object} stateProps The "mapStateToProps" object.
+ * @param {!Object} dispatchProps The "mapDispatchToProps" object.
+ * @return {!Object} The merged state and dispatch props.
+ */
+const mergeProps = (stateProps, dispatchProps) => {
+  const { appName } = stateProps;
+
+  const sideMenuConfig = getSideMenuConfig(stateProps, dispatchProps);
+  const topNavMenuConfig = getTopNavMenuConfig(stateProps, dispatchProps);
+
+  const props = {
+    appName,
+    showSidebar: false,
+    sideMenuConfig,
+    topNavMenuConfig
+  };
+
+  return props;
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    mergeProps
+  )(Navigation)
+);
