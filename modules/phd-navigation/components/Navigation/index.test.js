@@ -4,8 +4,8 @@ import {
 } from 'utils/tests';
 
 // Components
-import SideMenu from 'modules/Navigation/SideMenu';
-import TopNav from 'modules/Navigation/TopNav';
+import SideMenu from './SideMenu';
+import TopNav from './TopNav';
 
 import { NavigationJest } from './index';
 

@@ -9,8 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 // Components
-import TopNavMenu from 'modules/Navigation/TopNav/partials/top-nav-menu';
-import TopNavSearchForm from 'modules/Navigation/TopNav/partials/top-nav-search';
+import TopNavSearchForm from './partials/top-nav-search';
+import TopNavMenu from './partials/top-nav-menu';
 
 // Styles
 import styles from '../styles';
@@ -21,7 +21,8 @@ const TopNav = (props) => {
     searchHandler,
     toggleHandler,
     appName,
-    menuItems
+    menuItems,
+    userEmail
   } = props;
 
   return (
@@ -50,7 +51,10 @@ const TopNav = (props) => {
           {/* Search Form */}
           { searchHandler && <TopNavSearchForm {...props} /> }
           {/* Nav Menu */}
-          <TopNavMenu menuItems={menuItems} />
+          <TopNavMenu
+            menuItems={menuItems}
+            userEmail={userEmail}
+          />
         </Toolbar>
       </AppBar>
     </div>

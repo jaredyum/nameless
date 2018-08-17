@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 // MUI Components
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 
 // Components
@@ -29,20 +29,21 @@ class TopNavMenu extends Component {
   }
 
   render() {
-    const { menuItems } = this.props;
+    const { menuItems, userEmail } = this.props;
     const { anchorEl } = this.state;
     const isOpen = Boolean(anchorEl);
 
     return (
       <div>
-        <IconButton
+        { userEmail }
+        <Button
           aria-owns={isOpen ? 'top-nav-menu' : null}
           aria-haspopup="true"
           onClick={this.toggleOpen}
           color="inherit"
         >
           <AccountCircle />
-        </IconButton>
+        </Button>
         <Menu
           id="top-nav-menu"
           anchorEl={anchorEl}

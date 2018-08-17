@@ -8,8 +8,7 @@ import { APP_NAME } from 'copy/Global/common';
 import { logout as logoutAction } from 'actions/Auth';
 
 // Components
-// TODO: In a future version, this component will be COMPLETELY abstracted out.
-import Navigation from 'modules/Navigation';
+import { Navigation } from 'phd-navigation';
 
 // Config
 import {
@@ -19,11 +18,11 @@ import {
 
 const mapStateToProps = (state, props) => {
   const { authReducer } = state;
-  const { authed } = authReducer;
+  const { authed, userEmail } = authReducer;
 
   return ({
     authed,
-    appName: APP_NAME,
+    userEmail,
     ...props
   });
 };
@@ -50,14 +49,14 @@ const mapDispatchToProps = dispatch => ({
  * @return {!Object} The merged state and dispatch props.
  */
 const mergeProps = (stateProps, dispatchProps) => {
-  const { appName } = stateProps;
+  const { userEmail } = stateProps;
 
   const sideMenuConfig = getSideMenuConfig(stateProps, dispatchProps);
   const topNavMenuConfig = getTopNavMenuConfig(stateProps, dispatchProps);
 
   const props = {
-    appName,
-    showSidebar: false,
+    appName: APP_NAME,
+    userEmail,
     sideMenuConfig,
     topNavMenuConfig
   };
