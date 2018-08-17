@@ -8,6 +8,7 @@
       "node": {
         "moduleDirectory": [
           "client",
+          "modules",
           "node_modules"
         ]
       }
@@ -22,6 +23,7 @@
   },
   "rules": {
     "comma-dangle": ["error", "never"],
+    "function-paren-newline": 0,
     "implicit-arrow-linebreak": 0,
     "semi": ["error", "always"],
     "react/jsx-one-expression-per-line": 0,

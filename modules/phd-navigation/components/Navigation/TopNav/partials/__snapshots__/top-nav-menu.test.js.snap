@@ -2,14 +2,14 @@
 
 exports[`<TopNavMenu /> Component when rendering should render a component matching the snapshot 1`] = `
 <div>
-  <WithStyles(IconButton)
+  <WithStyles(Button)
     aria-haspopup="true"
     aria-owns={null}
     color="inherit"
     onClick={[Function]}
   >
     <pure(AccountCircle) />
-  </WithStyles(IconButton)>
+  </WithStyles(Button)>
   <WithStyles(Menu)
     anchorEl={null}
     id="top-nav-menu"

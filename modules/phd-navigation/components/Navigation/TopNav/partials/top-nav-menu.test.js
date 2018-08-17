@@ -4,7 +4,7 @@ import {
 } from 'utils/tests';
 
 // MUI Components
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 
 // Styles
@@ -40,8 +40,8 @@ describe('<TopNavMenu /> Component', () => {
   });
 
   describe('basic rendering', () => {
-    it('should render with an IconButton and Menu', () => {
-      expect(wrapper.find(IconButton)).toHaveLength(1);
+    it('should render with an Button and Menu', () => {
+      expect(wrapper.find(Button)).toHaveLength(1);
       expect(wrapper.find(Menu)).toHaveLength(1);
     });
 

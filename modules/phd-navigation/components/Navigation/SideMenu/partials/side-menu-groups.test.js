@@ -11,17 +11,26 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import styles from '../../styles';
 
 // Components
-import SideMenuItems from './side-menu-items';
+import SideMenuItem from './side-menu-item';
 import SideMenuGroups from './side-menu-groups';
 
 const defaultProps = {
   classes: styles,
   sideMenuConfig: [{
     navTitle: 'foo',
-    navItems: [1, 2, 3]
+    navItems: [
+      { label: 1 },
+      { label: 2 },
+      { label: 3 }
+    ]
   }, {
     navTitle: 'bar',
-    navItems: [4, 5, 6]
+    navItems: [
+      { label: 4 },
+      { label: 5 },
+      { label: 6 },
+      { label: 7 }
+    ]
   }]
 };
 
@@ -39,9 +48,10 @@ describe('<SideMenuGroups /> Component', () => {
       const menuLists = wrapper.find(MenuList);
       expect(menuLists).toHaveLength(2);
       // Assert that each list contains the correct child components.
-      menuLists.forEach((menuList) => {
+      menuLists.forEach((menuList, i) => {
         expect(menuList.find(ListSubheader)).toHaveLength(1);
-        expect(menuList.find(SideMenuItems)).toHaveLength(1);
+        expect(menuList.find(SideMenuItem))
+          .toHaveLength(defaultProps.sideMenuConfig[i].navItems.length);
       });
     });
   });

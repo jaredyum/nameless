@@ -4,8 +4,8 @@ import {
 } from 'utils/tests';
 
 // Components
-import TopNavMenu from 'modules/Navigation/TopNav/partials/top-nav-menu';
-import TopNavSearchForm from 'modules/Navigation/TopNav/partials/top-nav-search';
+import TopNavMenu from './partials/top-nav-menu';
+import TopNavSearchForm from './partials/top-nav-search';
 import { TopNavJest } from './index';
 
 // Styles

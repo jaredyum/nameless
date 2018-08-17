@@ -22,8 +22,7 @@ import {
 } from 'copy/Components/auth';
 
 import {
-  ROUTEPATH_VERIFICATION,
-  ROUTEPATH_DEFAULT_PAGE
+  ROUTEPATH_VERIFICATION
 } from 'copy/Global/routes';
 
 import {
@@ -125,10 +124,9 @@ export const logout = () => dispatch =>
  * trying to access an authorized route.
  * @param {string} email The email to use to login with.
  * @param {string} password The password to use to login with.
- * @param {string} redirectUrl An optional redirect URL to navigate to on success.
  * @return {!Promise} A promise resolving when the user has successfully logged in.
  */
-export const login = (email, password, redirectUrl = ROUTEPATH_DEFAULT_PAGE) =>
+export const login = (email, password) =>
   (dispatch) => {
     dispatch({
       type: AUTH_LOGIN_PENDING
@@ -137,7 +135,6 @@ export const login = (email, password, redirectUrl = ROUTEPATH_DEFAULT_PAGE) =>
     return firebase
       .then(auth => auth.signInWithEmailAndPassword(email, password))
       .then(() => dispatch(authorize(email)))
-      .then(() => dispatch(push(redirectUrl)))
       .catch((e) => {
         console.error(AUTH_LOGIN_ERROR, e);
         switch (e.code) {

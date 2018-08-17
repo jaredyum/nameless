@@ -34,7 +34,7 @@ const NavMenuItem = ({
     const clickAction = closeAndExec(closeHandler, clickHandler);
 
     return (
-      <MenuItem onClick={() => clickAction()}>
+      <MenuItem title={label} onClick={() => clickAction()}>
         <span className={classes.link}>{ label }</span>
       </MenuItem>
     );
@@ -43,10 +43,13 @@ const NavMenuItem = ({
   return (
     <MenuItem onClick={closeHandler}>
       <NavLink
+        title={label}
         className={classes.link}
         to={path}
         replace
-      >{ label }</NavLink>
+      >
+        { label }
+      </NavLink>
     </MenuItem>
   );
 };

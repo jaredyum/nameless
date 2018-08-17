@@ -6,7 +6,7 @@ import MenuList from '@material-ui/core/MenuList';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
 // Components
-import SideMenuItems from './side-menu-items';
+import SideMenuItem from './side-menu-item';
 
 const SideMenuGroups = ({ sideMenuConfig, toggleHandler }) => (
   <div>
@@ -18,10 +18,13 @@ const SideMenuGroups = ({ sideMenuConfig, toggleHandler }) => (
         <div key={navTitle}>
           <MenuList>
             <ListSubheader>{navTitle}</ListSubheader>
-            <SideMenuItems
-              toggleHandler={toggleHandler}
-              collection={navItems}
-            />
+            { navItems && navItems.length && navItems.map(navItem => (
+              <SideMenuItem
+                key={navItem.label}
+                toggleHandler={toggleHandler}
+                {...navItem}
+              />
+            ))}
           </MenuList>
           {showDivider && <Divider />}
         </div>

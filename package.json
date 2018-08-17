@@ -20,7 +20,7 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "client/**/*.{js,jsx}",
+      "{client,modules}/**/*.{js,jsx}",
       "!client/**/{style,styles}\\.js"
     ],
     "moduleNameMapper": {
@@ -32,6 +32,7 @@
     ],
     "moduleDirectories": [
       "node_modules",
+      "modules",
       "client"
     ],
     "setupTestFrameworkScriptFile": "./client/utils/testConfigure.js",

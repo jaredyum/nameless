@@ -4,7 +4,7 @@ exports[`<RouteManager /> component when rendering should render a component mat
 <HashRouter>
   <div>
     <WithStyles(CssBaseline) />
-    <Connect(WithStyles(TopNav)) />
+    <withRouter(Connect(Navigation)) />
     <WithStyles(Main)>
       <Switch>
         <RouteMiddleware
@@ -23,7 +23,6 @@ exports[`<RouteManager /> component when rendering should render a component mat
         />
         <RouteMiddleware
           component={[Function]}
-          exact={true}
           key="/(home)?"
           path="/(home)?"
         />
