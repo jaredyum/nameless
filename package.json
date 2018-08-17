@@ -20,7 +20,7 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "client/**/*.{js,jsx}",
+      "{client,modules}/**/*.{js,jsx}",
       "!client/**/{style,styles}\\.js"
     ],
     "moduleNameMapper": {

@@ -9,14 +9,17 @@ exports[`<SideMenuGroups /> Component when rendering should render a component m
       <WithStyles(ListSubheader)>
         foo
       </WithStyles(ListSubheader)>
-      <WithStyles(SideMenuItems)
-        collection={
-          Array [
-            1,
-            2,
-            3,
-          ]
-        }
+      <WithStyles(SideMenuItem)
+        key="1"
+        label={1}
+      />
+      <WithStyles(SideMenuItem)
+        key="2"
+        label={2}
+      />
+      <WithStyles(SideMenuItem)
+        key="3"
+        label={3}
       />
     </MenuList>
     <WithStyles(Divider) />
@@ -28,14 +31,21 @@ exports[`<SideMenuGroups /> Component when rendering should render a component m
       <WithStyles(ListSubheader)>
         bar
       </WithStyles(ListSubheader)>
-      <WithStyles(SideMenuItems)
-        collection={
-          Array [
-            4,
-            5,
-            6,
-          ]
-        }
+      <WithStyles(SideMenuItem)
+        key="4"
+        label={4}
+      />
+      <WithStyles(SideMenuItem)
+        key="5"
+        label={5}
+      />
+      <WithStyles(SideMenuItem)
+        key="6"
+        label={6}
+      />
+      <WithStyles(SideMenuItem)
+        key="7"
+        label={7}
       />
     </MenuList>
   </div>
