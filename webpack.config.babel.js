@@ -3,8 +3,6 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
-import { devKey } from './env';
-
 /**
  * The path to the dist directory (built, compiled assets).
  * @const {string}
@@ -67,15 +65,13 @@ const CopyWebpackPluginConfig = new CopyWebpackPlugin(
 
 const developmentPlugin = new webpack.DefinePlugin({
   'process.env': {
-    NODE_ENV: JSON.stringify('development'),
-    API_KEY: JSON.stringify(devKey)
+    NODE_ENV: JSON.stringify('development')
   }
 });
 
 const productionPlugin = new webpack.DefinePlugin({
   'process.env': {
-    NODE_ENV: JSON.stringify('production'),
-    API_KEY: JSON.stringify(devKey)
+    NODE_ENV: JSON.stringify('production')
   }
 });
 
