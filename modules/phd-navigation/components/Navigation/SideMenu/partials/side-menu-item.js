@@ -41,6 +41,7 @@ const SideMenuItem = (props) => {
         className={classes.link}
         onClick={toggleHandler}
         replace
+        exact
         activeClassName={classes.active}
       >
         { label }
