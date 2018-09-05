@@ -2,7 +2,7 @@
 import Home from 'components/Common/home';
 import Login from 'components/Auth/Login';
 import ResetPassword from 'components/Auth/resetPassword';
-import NotFound from 'modules/NotFound';
+import NotFound from 'components/NotFound';
 
 /**
  * Flag indicating that this path must be matched the "path" exactly.

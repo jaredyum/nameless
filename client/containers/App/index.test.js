@@ -8,7 +8,7 @@ import {
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
 // Components
-import RouteManager from 'modules/RouteManager';
+import RouteManager from 'components/RouteManager';
 import { App } from './index';
 
 describe('<App /> Component', () => {

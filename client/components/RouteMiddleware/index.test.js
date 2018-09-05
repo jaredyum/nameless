@@ -20,9 +20,7 @@ import {
 
 // Components
 import Home from 'components/Common/home';
-import Forbidden from 'modules/Forbidden';
 import Login from 'components/Auth/Login';
-import ResetPassword from 'components/Auth/resetPassword';
 import RouteMiddleware, { renderRoute } from './index';
 
 const defaultProps = {
@@ -75,28 +73,6 @@ describe('<RouteMiddleware /> Component', () => {
         expect(Component.type).toEqual(Redirect);
         expect(ComponentProps.to.pathname).toEqual(ROUTEPATH_LOGIN);
       });
-
-      it('should redirect to the forbidden page if page IS restricted', () => {
-        // Set up a restricted page.
-        const props = combineProps({ authOnly: true });
-        const Component = renderRoute(IntendedComponent, props, authed);
-
-        // Assert that the forbidden page is rendered.
-        expect(Component.type).toEqual(Forbidden);
-      });
-
-      it('should render an unauthed component when there are no exceptions',
-        () => {
-          // Set up a page that only non-logged-in users should see.
-          const props = combineProps({
-            unauthOnly: true,
-            location: { pathname: '/reset-password' }
-          });
-          const Component = renderRoute(ResetPassword, props, authed);
-
-          // Assert that intended page (reset password) was rendered.
-          expect(Component.type).toEqual(ResetPassword);
-        });
     });
 
     describe('when logged in', () => {
