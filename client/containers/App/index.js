@@ -8,7 +8,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from 'theme';
 
 // Components
-import RouteManager from 'modules/RouteManager';
+import RouteManager from 'components/RouteManager';
 
 // Redux
 import store from 'store';

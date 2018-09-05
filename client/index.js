@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { APP_NAME } from 'copy/Global/common';
 
 // Components
-import ConnectedApp from 'modules/App';
+import ConnectedApp from 'containers/App';
 
 document.title = APP_NAME;
 

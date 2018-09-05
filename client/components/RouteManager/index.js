@@ -15,9 +15,9 @@ import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 // Components
-import RouteMiddleware from 'modules/RouteMiddleware';
-import Main from 'modules/Main';
-import Loading from 'modules/Loading';
+import RouteMiddleware from 'components/RouteMiddleware';
+import Main from 'components/Main';
+import Loading from 'components/Loading';
 import ConnectedNav from 'components/ConnectedNav';
 
 // Utils
