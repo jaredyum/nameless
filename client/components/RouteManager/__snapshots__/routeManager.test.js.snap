@@ -8,6 +8,7 @@ exports[`<RouteManager /> component when rendering should render a component mat
     <WithStyles(Main)>
       <Switch>
         <RouteMiddleware
+          authed={true}
           component={[Function]}
           exact={true}
           key="/login"
@@ -15,6 +16,7 @@ exports[`<RouteManager /> component when rendering should render a component mat
           unauthOnly={true}
         />
         <RouteMiddleware
+          authed={true}
           component={[Function]}
           exact={true}
           key="/reset-password"
@@ -22,11 +24,13 @@ exports[`<RouteManager /> component when rendering should render a component mat
           unauthOnly={true}
         />
         <RouteMiddleware
+          authed={true}
           component={[Function]}
           key="/(home)?"
           path="/(home)?"
         />
         <RouteMiddleware
+          authed={true}
           component={[Function]}
           key="404"
         />
