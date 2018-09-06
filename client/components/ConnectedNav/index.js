@@ -18,10 +18,11 @@ import {
 
 const mapStateToProps = (state, props) => {
   const { authReducer } = state;
-  const { authed, userEmail } = authReducer;
+  const { authed, hasRights, userEmail } = authReducer;
 
   return ({
     authed,
+    hasRights,
     userEmail,
     ...props
   });
@@ -49,14 +50,14 @@ const mapDispatchToProps = dispatch => ({
  * @return {!Object} The merged state and dispatch props.
  */
 const mergeProps = (stateProps, dispatchProps) => {
-  const { userEmail } = stateProps;
+  const { authed, hasRights, userEmail } = stateProps;
 
   const sideMenuConfig = getSideMenuConfig(stateProps, dispatchProps);
   const topNavMenuConfig = getTopNavMenuConfig(stateProps, dispatchProps);
 
   const props = {
     appName: APP_NAME,
-    userEmail,
+    userEmail: authed && !hasRights ? 'Unauthorized User' : userEmail,
     sideMenuConfig,
     topNavMenuConfig
   };

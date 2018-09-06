@@ -55,7 +55,12 @@ const CopyWebpackPluginConfigOptions = [{
 if (!IS_PRODUCTION) {
   CopyWebpackPluginConfigOptions.push({
     from: 'firebase.json',
-    to: 'cfg/'
+    to: 'cfg/firebase'
+  });
+
+  CopyWebpackPluginConfigOptions.push({
+    from: 'config.json',
+    to: 'cfg/app'
   });
 }
 

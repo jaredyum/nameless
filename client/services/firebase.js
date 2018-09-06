@@ -2,9 +2,20 @@ import axios from 'axios';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-export const apiConfig = axios.get('/cfg/firebase.json').then(
+export const firebaseConfig = axios.get('/cfg/firebase/firebase.json').then(
   ({ data }) => (typeof data === 'object' ? data : JSON.parse(data))
 );
+
+export const applicationConfig = axios.get('/cfg/app/config.json').then(
+  ({ data }) => (typeof data === 'object' ? data : JSON.parse(data))
+);
+
+export const apiConfig = Promise.all([
+  firebaseConfig,
+  applicationConfig
+]).then(cfgs => cfgs.reduce(
+  (r, o) => ({ ...r, ...o }), {}
+));
 
 export default apiConfig
   .then(apiCfg => firebase.initializeApp({ ...apiCfg }))

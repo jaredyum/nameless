@@ -12,15 +12,18 @@ import {
   ROUTEPATH_DEFAULT_PAGE
 } from 'copy/Global/routes';
 
+import Forbidden from 'components/Forbidden';
+
 /**
  * Conditionally renders a route based on the current app/auth state.
  * @param {!React.Component} Component The intended component to render.
  * @param {!Object} props The initial/intended props for the rendered component.
- * @param {boolean} authed Whether the user is authenticated/authorized.
+ * @param {boolean} authed Whether the user is authenticated.
+ * @param {boolean} hasRights Whether the user is authorized.
  * @return {!React.Component} The React component that satifies the given
  *    app state.
  */
-export const renderRoute = (Component, routeProps, authed) => {
+export const renderRoute = (Component, routeProps, authed, hasRights) => {
   const { authOnly, unauthOnly, location } = routeProps;
   const { pathname } = location;
 
@@ -56,12 +59,10 @@ export const renderRoute = (Component, routeProps, authed) => {
       );
     }
 
-    // Prevent any unauthorized navigation.
-    // TODO: UI Engineer, add any authorization logic you need here.
-    if (authOnly) {
-      // TODO: Authorization will we added in a future PR.
-      // If a user is NOT authorized, redirect to the Forbidden page,
-      // OR render the Forbidden component.
+    // Prevent any unauthorized navigation for routes that require
+    // authorization.
+    if (authOnly && hasRights === false) {
+      return <Forbidden />;
     }
   }
 
@@ -72,12 +73,12 @@ export const renderRoute = (Component, routeProps, authed) => {
 const RouteMiddleware = ({
   component: Component,
   authed,
-  redirect,
+  hasRights,
   ...routeProps
 }) => (
   <Route
     {...routeProps}
-    render={() => renderRoute(Component, routeProps, authed, redirect)}
+    render={() => renderRoute(Component, routeProps, authed, hasRights)}
   />
 );
 
