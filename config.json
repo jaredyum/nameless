@@ -1,6 +1,0 @@
-{
-  "apiHost": "https://mythorrest-dev01.digiapi.pizzahut.com",
-  "apiVersion": "v1",
-  "rightsMgrHost": "https://rightsmgmr-dev01.digiapi.pizzahut.com",
-  "rightsMgrVersion": "v1"
-}

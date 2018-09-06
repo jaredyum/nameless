@@ -15,6 +15,7 @@ coverage
 
 # Environment vars
 env.js
+config.json
 firebase.json
 
 # Build folder
