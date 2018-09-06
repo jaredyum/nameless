@@ -18,11 +18,10 @@ import {
 
 const mapStateToProps = (state, props) => {
   const { authReducer } = state;
-  const { authed, hasRights, userEmail } = authReducer;
+  const { authed, userEmail } = authReducer;
 
   return ({
     authed,
-    hasRights,
     userEmail,
     ...props
   });
