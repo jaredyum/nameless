@@ -42,7 +42,7 @@ describe('Auth Actions', () => {
     it('should log a user in', () => store.dispatch(login()).then(() => {
       const expected = [
         { type: 'AUTH_LOGIN_PENDING' },
-        { type: 'AUTH_LOGIN_SUCCESS', payload: { user: mockUser } }
+        { type: 'AUTH_LOGIN_SUCCESS', payload: { ...mockUser } }
       ];
       expect(store.getActions()).toEqual(expected);
     }));
@@ -61,16 +61,16 @@ describe('Auth Actions', () => {
     it('should register the firebase auth listener', () => store
       .dispatch(onAuthStateChange())
       .then(() => {
-        expect(store.getActions()).toEqual([]);
+        expect(store.getActions()).toEqual([
+          { type: 'AUTH_AUTHORIZATION_PENDING' },
+          { type: 'AUTH_AUTHENTICATION_PENDING' }
+        ]);
       }));
 
     it('should authenticate a found user', () => {
       store.dispatch(authenticate(mockUser));
 
-      const expected = [
-        'AUTH_AUTHENTICATION_PENDING',
-        'AUTH_AUTHENTICATION_SUCCESS'
-      ];
+      const expected = ['AUTH_AUTHENTICATION_SUCCESS'];
 
       store.getActions().forEach((action, i) => {
         expect(action.type).toEqual(expected[i]);

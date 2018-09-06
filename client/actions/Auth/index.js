@@ -48,7 +48,7 @@ export const login = (email, password) => (dispatch) => {
     .then(({ user }) => {
       dispatch({
         type: AUTH_LOGIN_SUCCESS,
-        payload: { user }
+        payload: user
       });
     })
     .catch((error) => {
@@ -79,8 +79,6 @@ export const logout = () => dispatch => firebase
  * Attempts to Authenticate a user (via Firebase).
  */
 export const authenticate = currentUser => (dispatch) => {
-  dispatch({ type: AUTH_AUTHENTICATION_PENDING });
-
   if (currentUser) {
     return dispatch({
       type: AUTH_AUTHENTICATION_SUCCESS,
@@ -98,32 +96,28 @@ export const authenticate = currentUser => (dispatch) => {
 /**
  * Attempts to Authorize a user (via Rights Manager).
  */
-export const authorize = ({ email }) => (dispatch) => {
-  dispatch({ type: AUTH_AUTHORIZATION_PENDING });
+export const authorize = ({ email }) => dispatch => getUserByEmail(email)
+  .then(({ services }) => {
+    if (services && services.length) {
+      // The user is authorized if they (1) have a right with the name of
+      // this app, and (2), that right is NOT disabled.
+      const hasRights = services
+        .some(({ disabled, name }) => !disabled && name === RIGHTS_MANAGER_KEY);
 
-  return getUserByEmail(email)
-    .then(({ services }) => {
-      if (services && services.length) {
-        // The user is authorized if they (1) have a right with the name of
-        // this app, and (2), that right is NOT disabled.
-        const hasRights = services
-          .some(({ disabled, name }) => !disabled && name === RIGHTS_MANAGER_KEY);
-
-        if (hasRights) {
-          dispatch({ type: AUTH_AUTHORIZATION_SUCCESS });
-        } else {
-          // This is NOT an error - it just means the user is NOT authorized.
-          dispatch({ type: AUTH_AUTHORIZATION_FAILED });
-        }
+      if (hasRights) {
+        dispatch({ type: AUTH_AUTHORIZATION_SUCCESS });
+      } else {
+        // This is NOT an error - it just means the user is NOT authorized.
+        dispatch({ type: AUTH_AUTHORIZATION_FAILED });
       }
-    })
-    .catch((error) => {
-      dispatch({
-        type: AUTH_AUTHORIZATION_ERROR,
-        payload: error
-      });
+    }
+  })
+  .catch((error) => {
+    dispatch({
+      type: AUTH_AUTHORIZATION_ERROR,
+      payload: error
     });
-};
+  });
 
 /**
  * Listens for auth state changes (via the underlying Firebase).
@@ -134,23 +128,31 @@ export const authorize = ({ email }) => (dispatch) => {
  * NOTE: We only ever register/fire this method ONCE - firebase will take over
  * subsequent auth changes after bootstrapping with this method.
  */
-export const onAuthStateChange = () => dispatch => firebase
-  .then(auth => auth.onAuthStateChanged(() => {
-    const { currentUser } = auth;
-    // If a user was found, they should be authenticated and authorized.
-    // If no user was found, it is not an error, but we want to clear any user
-    // state.
-    if (currentUser) {
-      dispatch(authenticate(currentUser));
-      dispatch(authorize(currentUser));
-    } else {
-      dispatch({ type: AUTH_AUTHENTICATION_FAILED });
-      dispatch({ type: AUTH_AUTHORIZATION_FAILED });
-    }
-  }))
-  .catch((error) => {
-    dispatch({
-      type: AUTH_AUTHENTICATION_ERROR,
-      payload: error
+export const onAuthStateChange = () => (dispatch) => {
+  // Notify app state that authentication/authorization is pending.
+  // In each process, they will either pass, fail, or error out.
+  // NOTE: Authorization should happen first.
+  dispatch({ type: AUTH_AUTHORIZATION_PENDING });
+  dispatch({ type: AUTH_AUTHENTICATION_PENDING });
+
+  return firebase
+    .then(auth => auth.onAuthStateChanged(() => {
+      const { currentUser } = auth;
+      // If a user was found, they should be authenticated and authorized.
+      // If no user was found, it is not an error, but we want to clear any user
+      // state.
+      if (currentUser) {
+        dispatch(authorize(currentUser));
+        dispatch(authenticate(currentUser));
+      } else {
+        dispatch({ type: AUTH_AUTHENTICATION_FAILED });
+        dispatch({ type: AUTH_AUTHORIZATION_FAILED });
+      }
+    }))
+    .catch((error) => {
+      dispatch({
+        type: AUTH_AUTHENTICATION_ERROR,
+        payload: error
+      });
     });
-  });
+};

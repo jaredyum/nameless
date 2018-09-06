@@ -110,23 +110,20 @@ const clearUserProps = () => {
 };
 
 export default (state = initialState, action) => {
+  const newState = { ...state, hasRights: RIGHTS_STATE.PENDING };
+
   switch (action.type) {
     case AUTH_AUTHENTICATION_SUCCESS:
-      return {
-        ...state,
-        authed: AUTH_STATE.AUTHENTICATED,
-        ...parseUserProps(action.payload)
-      };
     case AUTH_LOGIN_SUCCESS:
       return {
-        ...state,
+        ...newState,
         authed: AUTH_STATE.AUTHENTICATED,
         ...parseUserProps(action.payload)
       };
     case AUTH_AUTHENTICATION_PENDING:
     case AUTH_LOGIN_PENDING:
       return {
-        ...state,
+        ...newState,
         authed: AUTH_STATE.PENDING,
         ...clearUserProps()
       };
@@ -134,7 +131,7 @@ export default (state = initialState, action) => {
     case AUTH_LOGIN_ERROR:
     case AUTH_LOGOUT_ERROR:
       return {
-        ...state,
+        ...newState,
         authed: AUTH_STATE.UNAUTHENTICATED,
         error: action.payload,
         ...clearUserProps()
@@ -142,30 +139,31 @@ export default (state = initialState, action) => {
     case AUTH_AUTHENTICATION_FAILED:
     case AUTH_LOGOUT_SUCCESS:
       return {
-        ...state,
+        ...newState,
         authed: AUTH_STATE.UNAUTHENTICATED,
+        hasRights: RIGHTS_STATE.UNAUTHORIZED,
         error: action.payload,
         ...clearUserProps()
       };
     /* Authorization Reducers */
     case AUTH_AUTHORIZATION_ERROR:
       return {
-        ...state,
+        ...newState,
         error: action.payload
       };
     case AUTH_AUTHORIZATION_FAILED:
       return {
-        ...state,
+        ...newState,
         hasRights: RIGHTS_STATE.UNAUTHORIZED
       };
     case AUTH_AUTHORIZATION_PENDING:
       return {
-        ...state,
+        ...newState,
         hasRights: RIGHTS_STATE.PENDING
       };
     case AUTH_AUTHORIZATION_SUCCESS:
       return {
-        ...state,
+        ...newState,
         hasRights: RIGHTS_STATE.AUTHORIZED
       };
     default:
