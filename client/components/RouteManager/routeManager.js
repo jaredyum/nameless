@@ -40,15 +40,7 @@ class RouteManager extends React.Component {
       currentNotification
     } = this.props;
 
-    // The "null" state for authed and hasRights indicate that we are still
-    // in the process of authorizaion/authentication.
-    if (authed === null || hasRights === null) {
-      return (
-        <div className={classes.routeManager}>
-          <Loading />
-        </div>
-      );
-    }
+    const isLoading = authed === null || hasRights === null;
 
     return (
       <HashRouter>
@@ -59,16 +51,22 @@ class RouteManager extends React.Component {
             notifications={notifications}
             currentNotification={currentNotification}
           >
-            <Switch>
-              { ROUTES_CONFIG.map(routeProps => (
-                <RouteMiddleware
-                  key={routeProps.path || '404'}
-                  authed={authed}
-                  hasRights={hasRights}
-                  {...routeProps}
-                />
-              ))}
-            </Switch>
+            {
+              isLoading
+                ? <Loading />
+                : (
+                  <Switch>
+                    { ROUTES_CONFIG.map(routeProps => (
+                      <RouteMiddleware
+                        key={routeProps.path || '404'}
+                        authed={authed}
+                        hasRights={hasRights}
+                        {...routeProps}
+                      />
+                    ))}
+                  </Switch>
+                )
+            }
           </Main>
         </div>
       </HashRouter>
