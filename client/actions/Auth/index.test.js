@@ -1,59 +1,78 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
+// Action Types
 import {
-  authenticate,
-  authorize,
+  AUTH_ERROR,
+  AUTH_SUCCESS,
+
+  AUTH_LOGOUT_SUCCESS
+} from 'actions/types';
+
+import {
   login,
   logout,
+  handleStateChange,
   onAuthStateChange
 } from './index';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-const mockUser = { email: 'foo@bar.com' };
-const mockAuthenticate = jest.fn();
+const mockUser = { email: 'foo@bar.com', password: 'p4ssw0rd' };
+const mockError = 'FAIL!';
+
+// Mocks for firebase services.
+let mockHandleStateChange;
+let mockSignInWithEmailAndPassword;
+let mockSignout;
+
+// Mocks for user services (Rights Manager).
+let mockGetUserByEmail;
 
 let store;
+let mockAuth;
+let mockDispatch;
 
 jest.mock('services/user', () => ({
-  getUserByEmail: () => Promise.resolve({ services: [] })
+  getUserByEmail: (...args) => mockGetUserByEmail(...args)
 }));
 
 jest.mock('services/firebase', () => Promise.resolve({
-  currentUser: 'foo',
-  onAuthStateChanged: () => ({
-    authenticate: mockAuthenticate
-  }),
-  signInWithEmailAndPassword: () => ({
-    user: mockUser
-  }),
-  signOut: () => jest.fn()
+  onAuthStateChanged: () => mockHandleStateChange(mockAuth, mockDispatch),
+  signInWithEmailAndPassword: (...args) => mockSignInWithEmailAndPassword(...args),
+  signOut: () => mockSignout()
 }));
-
 
 describe('Auth Actions', () => {
   beforeEach(() => {
     store = mockStore({});
+
+    mockAuth = { currentUser: {} };
+    mockDispatch = jest.fn();
+
+    // Service mocks.
+    mockHandleStateChange = jest.fn();
+    mockSignInWithEmailAndPassword = jest.fn();
+    mockSignout = jest.fn();
+    mockGetUserByEmail = jest.fn(() => Promise.resolve());
   });
 
   describe('logging in', () => {
-    it('should log a user in', () => store.dispatch(login()).then(() => {
-      const expected = [
-        { type: 'AUTH_LOGIN_PENDING' },
-        { type: 'AUTH_LOGIN_SUCCESS', payload: { ...mockUser } }
-      ];
-      expect(store.getActions()).toEqual(expected);
-    }));
+    it('should log a user in', () => {
+      const { email, password } = mockUser;
+      return store.dispatch(login(email, password)).then(() => {
+        expect(mockSignInWithEmailAndPassword)
+          .toHaveBeenCalledWith(email, password);
+      });
+    });
   });
 
   describe('logging out', () => {
     it('should log a user out', () => store.dispatch(logout()).then(() => {
-      const expected = [
-        { type: 'AUTH_LOGOUT_SUCCESS' }
-      ];
-      expect(store.getActions()).toEqual(expected);
+      expect(mockSignout).toHaveBeenCalled();
+      const expectedActions = [{ type: AUTH_LOGOUT_SUCCESS }];
+      expect(store.getActions()).toEqual(expectedActions);
     }));
   });
 
@@ -61,32 +80,40 @@ describe('Auth Actions', () => {
     it('should register the firebase auth listener', () => store
       .dispatch(onAuthStateChange())
       .then(() => {
-        expect(store.getActions()).toEqual([
-          { type: 'AUTH_AUTHORIZATION_PENDING' },
-          { type: 'AUTH_AUTHENTICATION_PENDING' }
-        ]);
+        expect(mockHandleStateChange)
+          .toHaveBeenCalledWith(mockAuth, mockDispatch);
       }));
 
-    it('should authenticate a found user', () => {
-      store.dispatch(authenticate(mockUser));
+    it('should handle state changes when there is a user',
+      () => handleStateChange({ ...mockUser }, store.dispatch)
+        .then(() => {
+          const expectedActions = [{
+            payload: {
+              currentUser: mockUser,
+              rights: undefined
+            },
+            type: AUTH_SUCCESS
+          }];
 
-      const expected = ['AUTH_AUTHENTICATION_SUCCESS'];
+          // Assert the correct actions were called.
+          expect(store.getActions()).toEqual(expectedActions);
 
-      store.getActions().forEach((action, i) => {
-        expect(action.type).toEqual(expected[i]);
-      });
-    });
+          // Assert that the getUserByEmail service was called with the email passed.
+          expect(mockGetUserByEmail).toHaveBeenCalledWith(mockUser.email);
+        }));
 
-    it('should authorize a found user', () => {
-      store.dispatch(authorize(mockUser));
+    it('should handle state changes when there is NOT a user', () => {
+      // Force the service call to fail.
+      mockGetUserByEmail.mockImplementation(() => Promise.reject(mockError));
 
-      const expected = [
-        'AUTH_AUTHORIZATION_PENDING',
-        'AUTH_AUTHORIZATION_SUCCESS'
-      ];
+      return handleStateChange({ email: null }, store.dispatch).then(() => {
+        const expectedActions = [{
+          payload: mockError,
+          type: AUTH_ERROR
+        }];
 
-      store.getActions().forEach((action, i) => {
-        expect(action.type).toEqual(expected[i]);
+        // Assert the correct actions were called (failed service).
+        expect(store.getActions()).toEqual(expectedActions);
       });
     });
   });
