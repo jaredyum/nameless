@@ -1,21 +1,14 @@
 import {
-  AUTH_AUTHENTICATION_ERROR,
-  AUTH_AUTHENTICATION_FAILED,
-  AUTH_AUTHENTICATION_SUCCESS,
-  AUTH_AUTHENTICATION_PENDING,
+  AUTH_ERROR,
+  AUTH_FAILED,
+  AUTH_SUCCESS,
+  AUTH_PENDING,
 
-  AUTH_AUTHORIZATION_ERROR,
-  AUTH_AUTHORIZATION_FAILED,
-  AUTH_AUTHORIZATION_SUCCESS,
-  AUTH_AUTHORIZATION_PENDING,
-
-  AUTH_LOGIN_SUCCESS,
-  AUTH_LOGIN_PENDING,
-  AUTH_LOGIN_ERROR,
-
-  AUTH_LOGOUT_SUCCESS,
-  AUTH_LOGOUT_ERROR
+  AUTH_LOGOUT_SUCCESS
 } from 'actions/types';
+
+// Constants
+import { RIGHTS_MANAGER_KEY } from 'copy/Global/common';
 
 /**
  * Firebase user properties that our app will consume (some have been omitted).
@@ -62,6 +55,10 @@ export const RIGHTS_STATE = {
   PENDING: null
 };
 
+/**
+ * Initial State for this reducer.
+ * @const {!Object.<string, *>}
+ */
 export const initialState = {
   authed: AUTH_STATE.PENDING,
   hasRights: RIGHTS_STATE.PENDING,
@@ -79,15 +76,16 @@ export const initialState = {
  * app can safely ignore (and keep out of our Redux store).
  *
  * @param {!Object} payload The original Firebase payload.
+ * @param {!Object} payload.currentUser The current Firebase user.
  * @return {!Object} The parsed user object.
  */
-const parseUserProps = (payload) => {
+export const parseUserProps = ({ currentUser }) => {
   const userProps = {};
 
-  if (payload) {
+  if (currentUser) {
     FIREBASE_USER_PROPS.forEach((prop) => {
       const normalizedName = `user${prop[0].toUpperCase()}${prop.slice(1)}`;
-      userProps[normalizedName] = payload[prop];
+      userProps[normalizedName] = currentUser[prop];
     });
   }
 
@@ -109,62 +107,63 @@ const clearUserProps = () => {
   return userProps;
 };
 
-export default (state = initialState, action) => {
-  const newState = { ...state, hasRights: RIGHTS_STATE.PENDING };
+/**
+ * Attempts to Authorize a user (via Rights Manager).
+ *
+ * Checks to see if the user has rights for a service that is (1) not disabled,
+ * and (2) has a name matching the RIGHTS_MANAGER_KEY.
+ *
+ * @param {!Object} rights The rights object to check.
+ * @param {!Array.<!Object>} rights.services The services to check for
+ *   authorization.
+ * @return {boolean} Flag indicating whether or not the user is authorized.
+ */
+export const authorizeUser = ({ rights = {} }) => {
+  const { services = [] } = rights;
 
-  switch (action.type) {
-    case AUTH_AUTHENTICATION_SUCCESS:
-    case AUTH_LOGIN_SUCCESS:
+  return services
+    .some(({ disabled, name }) => !disabled && name === RIGHTS_MANAGER_KEY);
+};
+
+export default (state = initialState, action) => {
+  const newState = {
+    ...state,
+    error: null,
+    hasRights: RIGHTS_STATE.PENDING
+  };
+
+  const { type, payload } = action;
+
+  switch (type) {
+    case AUTH_SUCCESS:
       return {
         ...newState,
         authed: AUTH_STATE.AUTHENTICATED,
-        ...parseUserProps(action.payload)
+        hasRights: authorizeUser(payload),
+        ...parseUserProps(payload)
       };
-    case AUTH_AUTHENTICATION_PENDING:
-    case AUTH_LOGIN_PENDING:
+    case AUTH_PENDING:
       return {
         ...newState,
         authed: AUTH_STATE.PENDING,
+        hasRights: RIGHTS_STATE.PENDING,
         ...clearUserProps()
       };
-    case AUTH_AUTHENTICATION_ERROR:
-    case AUTH_LOGIN_ERROR:
-    case AUTH_LOGOUT_ERROR:
+    case AUTH_ERROR:
       return {
         ...newState,
         authed: AUTH_STATE.UNAUTHENTICATED,
-        error: action.payload,
+        hasRights: RIGHTS_STATE.UNAUTHORIZED,
+        error: payload,
         ...clearUserProps()
       };
-    case AUTH_AUTHENTICATION_FAILED:
+    case AUTH_FAILED:
     case AUTH_LOGOUT_SUCCESS:
       return {
         ...newState,
         authed: AUTH_STATE.UNAUTHENTICATED,
         hasRights: RIGHTS_STATE.UNAUTHORIZED,
-        error: action.payload,
         ...clearUserProps()
-      };
-    /* Authorization Reducers */
-    case AUTH_AUTHORIZATION_ERROR:
-      return {
-        ...newState,
-        error: action.payload
-      };
-    case AUTH_AUTHORIZATION_FAILED:
-      return {
-        ...newState,
-        hasRights: RIGHTS_STATE.UNAUTHORIZED
-      };
-    case AUTH_AUTHORIZATION_PENDING:
-      return {
-        ...newState,
-        hasRights: RIGHTS_STATE.PENDING
-      };
-    case AUTH_AUTHORIZATION_SUCCESS:
-      return {
-        ...newState,
-        hasRights: RIGHTS_STATE.AUTHORIZED
       };
     default:
       return state;
