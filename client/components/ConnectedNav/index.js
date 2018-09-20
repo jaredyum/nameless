@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { APP_NAME } from 'copy/Global/common';
 
 // Actions
-import { logout as logoutAction } from 'actions/Auth';
+import { logout as logoutAction } from 'phd-auth';
 
 // Components
 import { Navigation } from 'phd-navigation';

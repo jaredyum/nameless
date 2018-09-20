@@ -258,6 +258,31 @@ exports[`<App /> Component when rendering should render a component matching the
     }
   }
 >
-  <Connect(WithStyles(RouteManager)) />
+  <Connect(WithStyles(RouteManager))
+    LoaderComponent={[Function]}
+    routes={
+      Array [
+        Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/login",
+          "unauthOnly": true,
+        },
+        Object {
+          "component": [Function],
+          "exact": true,
+          "path": "/reset-password",
+          "unauthOnly": true,
+        },
+        Object {
+          "component": [Function],
+          "path": "/(home)?",
+        },
+        Object {
+          "component": [Function],
+        },
+      ]
+    }
+  />
 </MuiThemeProvider>
 `;
