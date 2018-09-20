@@ -8,7 +8,10 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from 'theme';
 
 // Components
-import RouteManager from 'components/RouteManager';
+import { RouteManager } from 'phd-auth';
+
+// Routes config
+import ROUTES_CONFIG from 'routes';
 
 // Redux
 import store from 'store';
@@ -21,7 +24,7 @@ import './index.css';
 // Redux itself.
 export const App = () => (
   <MuiThemeProvider theme={theme}>
-    <RouteManager />
+    <RouteManager routes={ROUTES_CONFIG} />
   </MuiThemeProvider>
 );
 
