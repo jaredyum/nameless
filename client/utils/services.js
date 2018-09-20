@@ -7,15 +7,6 @@ import firebase from 'services/firebase';
 // Errors
 import { API_ERRORS } from 'copy/Global/errors';
 
-// Actions
-import { toggleNotification } from 'actions/Notifications';
-
-// Redux Store
-import store from 'store';
-
-// Dispatch
-const { dispatch } = store;
-
 /**
  * Decorates the headers for a request.
  * @param {string} token The firebase token.
@@ -28,7 +19,6 @@ const decorateHeaders = token => ({
 
 export const defaultCatch = (endPoint, source = 'services') => (e) => {
   console.error(`${source}/${endPoint}`, e);
-  dispatch(toggleNotification(e.response.data.message, 'error'));
   throw e;
 };
 
