@@ -14,7 +14,7 @@ import theme from 'theme';
 import ROUTES_CONFIG from 'routes';
 
 // Redux
-import Loader from '../../components/Loading';
+import Loader from 'components/Loading';
 
 // Styles
 import './index.css';
