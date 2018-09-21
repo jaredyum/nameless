@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { APP_NAME } from 'copy/Global/common';
 
 // Actions
-import { logout as logoutAction } from 'actions/Auth';
+import { actions as authActions } from 'phd-auth';
 
 // Components
 import { Navigation } from 'phd-navigation';
@@ -15,6 +15,8 @@ import {
   getSideMenuConfig,
   getTopNavMenuConfig
 } from './config';
+
+const { logout: logoutAction } = authActions;
 
 const mapStateToProps = (state, props) => {
   const { authReducer } = state;

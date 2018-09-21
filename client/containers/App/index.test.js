@@ -8,8 +8,10 @@ import {
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
 // Components
-import RouteManager from 'components/RouteManager';
+import { components } from 'phd-auth';
 import { App } from './index';
+
+const { RouteManager } = components;
 
 describe('<App /> Component', () => {
   testCommonComponentAttrs(App);

@@ -10,7 +10,9 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 // Actions
-import { login } from 'actions/Auth';
+import { actions as authActions } from 'phd-auth';
+
+const { login } = authActions;
 
 const styles = theme => ({
   wrapper: {
