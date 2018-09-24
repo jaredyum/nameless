@@ -264,18 +264,6 @@ exports[`<App /> Component when rendering should render a component matching the
       Array [
         Object {
           "component": [Function],
-          "exact": true,
-          "path": "/login",
-          "unauthOnly": true,
-        },
-        Object {
-          "component": [Function],
-          "exact": true,
-          "path": "/reset-password",
-          "unauthOnly": true,
-        },
-        Object {
-          "component": [Function],
           "path": "/(home)?",
         },
         Object {
