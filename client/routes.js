@@ -1,7 +1,5 @@
 // Route components
 import Home from 'components/Common/home';
-import Login from 'components/Auth/Login';
-import ResetPassword from 'components/Auth/resetPassword';
 import NotFound from 'components/NotFound';
 
 /**
@@ -29,20 +27,6 @@ const unauthOnly = true;
  * @const {!Array.<!Object>}
  */
 const ROUTES_CONFIG = [
-  /* Routes that only non-logged-in users should access. (unauthOnly=true) */
-  {
-    path: '/login',
-    component: Login,
-    exact,
-    unauthOnly
-  },
-  {
-    path: '/reset-password',
-    component: ResetPassword,
-    exact,
-    unauthOnly
-  },
-
   /* (Protected) Routes that only logged-in users should access. (authOnly=true) */
   /* Add PROTECTED routes here with the authOnly flag. */
 
