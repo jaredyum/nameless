@@ -3,25 +3,6 @@ import Home from 'components/Common/home';
 import NotFound from 'components/NotFound';
 
 /**
- * Flag indicating that this path must be matched the "path" exactly.
- * @type {boolean}
- */
-const exact = true;
-
-/**
- * Flag indicating that only authorized users can access this page.
- * @type {boolean}
- */
-// TODO: Developers - enable this flag when you have authorized routes.
-// const authOnly = true;
-
-/**
- * Flag indicating that only non-logged-in users can access this page.
- * @type {boolean}
- */
-const unauthOnly = true;
-
-/**
  * The routes configuration.
  * NOTE: RouteInterceptor MUST come last; it is our application's 404 handler.
  * @const {!Array.<!Object>}
