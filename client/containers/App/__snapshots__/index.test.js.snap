@@ -260,6 +260,7 @@ exports[`<App /> Component when rendering should render a component matching the
 >
   <Connect(WithStyles(RouteManager))
     LoaderComponent={[Function]}
+    NavComponent={[Function]}
     routes={
       Array [
         Object {
