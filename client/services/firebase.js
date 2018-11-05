@@ -18,5 +18,10 @@ export const apiConfig = Promise.all([
 ));
 
 export default apiConfig
-  .then(apiCfg => firebase.initializeApp({ ...apiCfg }))
+  .then((apiCfg) => {
+    if (!firebase.apps.length) {
+      return firebase.initializeApp({ ...apiCfg });
+    }
+    return firebase.app();
+  })
   .then(fireBaseApp => fireBaseApp.auth());
