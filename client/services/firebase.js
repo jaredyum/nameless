@@ -17,6 +17,16 @@ export const apiConfig = Promise.all([
   (r, o) => ({ ...r, ...o }), {}
 ));
 
+/**
+ * Gets the current Firebase configuration.
+ * If no Firebase app is found, we initialize it.
+ * @return {!Promise} A promise resolving with the firebase configuation.
+ */
 export default apiConfig
-  .then(apiCfg => firebase.initializeApp({ ...apiCfg }))
+  .then((apiCfg) => {
+    if (!firebase.apps.length) {
+      return firebase.initializeApp({ ...apiCfg });
+    }
+    return firebase.app();
+  })
   .then(fireBaseApp => fireBaseApp.auth());
