@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 // Components
 import { components as authComponents } from 'phd-auth';
 import ConnectedNav from 'components/ConnectedNav';
+import Main from 'components/Main';
 
 // MUI
 import { MuiThemeProvider } from '@material-ui/core/styles';
@@ -27,7 +28,14 @@ const { RouteManager } = authComponents;
 // Redux itself.
 export const App = () => (
   <MuiThemeProvider theme={theme}>
-    <RouteManager routes={ROUTES_CONFIG} LoaderComponent={Loader} NavComponent={ConnectedNav} />
+    <Main>
+      <RouteManager
+        routes={ROUTES_CONFIG}
+        LoaderComponent={Loader}
+        NavComponent={ConnectedNav}
+      />
+
+    </Main>
   </MuiThemeProvider>
 );
 

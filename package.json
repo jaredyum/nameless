@@ -52,7 +52,7 @@
     "history": "^4.7.2",
     "minimatch": "^3.0.4",
     "path-to-regexp": "^2.2.1",
-    "phd-auth": "^0.0.1-0",
+    "phd-auth": "^0.0.1-2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-hot-loader": "^4.3.4",

@@ -26,22 +26,26 @@ const SideMenu = (props) => {
   // The drawer is the same for BOTH desktop and mobile, but it in initialzed
   // differently for each
   const drawer = (
-    <div>
-      <Toolbar className={classes.toolbar}>
-        <Typography
-          variant="title"
-          color="inherit"
-          className={classes.flex}
-        >
-          {appName}
-        </Typography>
-      </Toolbar>
-      <Divider />
-      <SideMenuGroups
-        sideMenuConfig={sideMenuConfig}
-        toggleHandler={toggleHandler}
-      />
-    </div>
+    <SideMenuGroups
+      sideMenuConfig={sideMenuConfig}
+      toggleHandler={toggleHandler}
+    />
+    // <div>
+    //   <Toolbar className={classes.toolbar}>
+    //     <Typography
+    //       variant="title"
+    //       color="inherit"
+    //       className={classes.flex}
+    //     >
+    //       {appName}
+    //     </Typography>
+    //   </Toolbar>
+    //   <Divider />
+    //   <SideMenuGroups
+    //     sideMenuConfig={sideMenuConfig}
+    //     toggleHandler={toggleHandler}
+    //   />
+    // </div>
   );
 
   return (
